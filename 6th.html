@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoisting and Scope Demo</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            padding: 20px;
+        }
+
+        .box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 700px;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        pre {
+            background: #222;
+            color: #0f0;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="box">
+
+        <h2>Hoisting and Scope Demo</h2>
+
+        <pre id="output"></pre>
+
+    </div>
+
+    <script>
+
+        const output = document.getElementById("output");
+
+        function print(message) {
+            console.log(message);
+            output.textContent += message + "\n";
+        }
+
+
+        // ================= HOISTING DEMO =================
+
+        print(a);
+
+        var a = 10;
+
+
+        let b = 20;
+
+        const c = 30;
+
+
+        hello();
+
+        function hello() {
+            print("Hello from function declaration");
+        }
+
+
+        var sayHi = function () {
+            print("Hello from function expression");
+        };
+
+        sayHi();
+
+
+        // ================= SCOPE DEMO =================
+
+        function scopeTest() {
+
+            if (true) {
+
+                var x = 100;
+
+                let y = 200;
+
+                const z = 300;
+
+                print("Inside block:");
+
+                print(x);
+
+                print(y);
+
+                print(z);
+            }
+
+            print("Outside block but inside function:");
+
+            print(x);
+        }
+
+        scopeTest();
+
+
+        // ================= REDECLARATION & REASSIGNMENT =================
+
+        var m = 1;
+
+        var m = 2;
+
+        m = 3;
+
+
+        let n = 10;
+
+        n = 30;
+
+
+        const p = 50;
+
+
+        print("Final Values: " + a + " " + m + " " + n + " " + p);
+
+    </script>
+
+</body>
+
+</html>

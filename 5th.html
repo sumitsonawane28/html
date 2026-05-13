@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>String Method Form</title>
+
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+            background: #f4f4f9;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 400px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+
+        .output {
+            margin-top: 20px;
+            padding: 10px;
+            background: #eef;
+            border-left: 4px solid #5c67f2;
+            font-size: 0.9em;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.8em;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+
+        <h3>User Registration</h3>
+
+        <label>Full Name:</label>
+        <input type="text" id="nameIn" placeholder="jane doe">
+
+        <label>Email:</label>
+        <input type="email" id="emailIn" placeholder="USER@Example.com">
+
+        <label>Age:</label>
+        <input type="text" id="ageIn" placeholder="25">
+
+        <div class="output" id="result">
+            Start typing to see string methods in action...
+        </div>
+
+    </div>
+
+    <script>
+
+        const inputs = document.querySelectorAll('input');
+
+        const resultDiv = document.getElementById('result');
+
+
+        function processForm() {
+
+            let name = document.getElementById('nameIn').value;
+
+            let email = document.getElementById('emailIn').value;
+
+            let ageStr = document.getElementById('ageIn').value;
+
+
+            let cleanName = name.trim();
+
+            let formattedName =
+                cleanName.charAt(0).toUpperCase() +
+                cleanName.slice(1).toLowerCase();
+
+
+            let cleanEmail = email.toLowerCase().trim();
+
+
+            let domain =
+                cleanEmail.includes('@')
+                    ? cleanEmail.slice(cleanEmail.indexOf('@') + 1)
+                    : "None";
+
+
+            let ageNum = Number(ageStr);
+
+
+            let yearOfBirth =
+                isNaN(ageNum) || ageNum === 0
+                    ? "N/A"
+                    : new Date().getFullYear() - ageNum;
+
+
+            resultDiv.innerHTML = `
+                <strong>Processed Name:</strong> "${formattedName}" <br>
+                <strong>Email Domain:</strong> ${domain} <br>
+                <strong>Est. Birth Year:</strong> ${yearOfBirth} <br>
+                <strong>ID Code:</strong> ${ageStr.padStart(5, '0')}
+            `;
+        }
+
+
+        inputs.forEach(input =>
+            input.addEventListener('input', processForm)
+        );
+
+    </script>
+
+</body>
+
+</html>

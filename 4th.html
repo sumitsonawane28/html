@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>DOM Manipulation Demo</title>
+
+    <style>
+        .box {
+            width: 200px;
+            padding: 20px;
+            margin-bottom: 10px;
+            background-color: #e0e0e0;
+            text-align: center;
+            border: 2px solid #333;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="targetElement" class="box">
+        Original Content
+    </div>
+
+    <button id="toggleBtn">Hide Content</button>
+    <button id="textBtn">Change Text</button>
+    <button id="styleBtn">Change Style</button>
+
+    <script>
+
+        const element = document.getElementById('targetElement');
+
+        const toggleBtn = document.getElementById('toggleBtn');
+
+        const textBtn = document.getElementById('textBtn');
+
+        const styleBtn = document.getElementById('styleBtn');
+
+
+        toggleBtn.addEventListener('click', () => {
+
+            element.classList.toggle('hidden');
+
+            toggleBtn.textContent =
+                element.classList.contains('hidden')
+                    ? 'Show Content'
+                    : 'Hide Content';
+
+        });
+
+
+        textBtn.addEventListener('click', () => {
+
+            element.textContent = "Text Updated! ✨";
+
+        });
+
+
+        styleBtn.addEventListener('click', () => {
+
+            element.style.backgroundColor = '#4CAF50';
+
+            element.style.color = 'white';
+
+            element.style.borderRadius = '15px';
+
+            element.style.fontWeight = 'bold';
+
+        });
+
+    </script>
+
+</body>
+
+</html>
